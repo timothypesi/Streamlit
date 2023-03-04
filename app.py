@@ -40,7 +40,8 @@ def predict_price(WoodDeckSF, OpenPorchSF, EnclosedPorch, MiscVal, SaleCondition
                   'SaleCondition': SaleCondition}
     input_df = pd.DataFrame(input_data, index=[0])
     prediction = model.predict(input_df)[0]
-    return prediction
+    return int(round(prediction))
+
 
 # Define the Streamlit app
 st.title('Predict Sales Price')
@@ -55,4 +56,3 @@ SaleCondition = st.selectbox('SaleCondition', ['Normal', 'Abnorml', 'Partial', '
 # Make predictions and display the result
 prediction = predict_price(WoodDeckSF, OpenPorchSF, EnclosedPorch, MiscVal, SaleCondition)
 st.write('Predicted Sales Price:', prediction)
-                     
